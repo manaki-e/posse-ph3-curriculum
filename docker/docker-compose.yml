@@ -5,7 +5,7 @@ services:
     image: mysql:8.0
     volumes:
       - ./db/var/lib/mysql:/var/lib/mysql
-      - ./db/etc/my.conf:/etc/mysql/conf.d/my.conf
+      - ./db/etc/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
     environment:
