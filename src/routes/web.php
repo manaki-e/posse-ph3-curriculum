@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ChoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,4 @@ Route::get('/quiz_list', function () {
     return view('quiz_list');
 });
 
-Route::get('quiz/{id?}', [QuizController::class, 'index']);
+Route::get('/quiz/{id?}', [QuizController::class, 'index']);
