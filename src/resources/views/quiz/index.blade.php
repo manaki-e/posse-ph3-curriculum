@@ -2,38 +2,40 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../../js/app.js"></script>
 </head>
 
 <body>
-  <main>
-    @if ( $id == 1 )
-    <ul>
-      <li>
-        <p>１．この地名はなんて読む？：高輪</p>
-        <p>こうわ、たかわ、たかなわ</p>
-      </li>
-      <li>
-        <p>２．この地名はなんて読む？：亀戸</p>
-        <p>かめいど、かめど、かめと</p>
-      </li>
-      <li>
-        <p>３．この地名はなんて読む？：麹町</p>
-        <p>かゆまち、おかとまち、こうじまち</p>
-      </li>
-    </ul>
-    @elseif ( $id == 2 )
-    <ul>
-      <li>
-        <p>１．この地名はなんて読む？：向洋</p>
-        <p>むこうひら、むきひら、むかいなだ</p>
-      </li>
-    </ul>
-    @endif
-  </main>
+    <main>
+      {{ $contents }}
+        <ol id="wrapper">
+            <div class="main">
+                <li class="question">1. この地名はなんて読む？</li>
+                <div class="picture">
+                    <img src="../img/takanawa.png" alt="たかなわ">
+                </div>
+                <div class="optionBox">
+                    <button class="option" id="1-1" onclick="selectProcess('1', '1')">たかなわ</button>
+                    <button class="option" id="1-2" onclick="selectProcess('1', '2')">たかわ</button>
+                    <button class="option" id="1-3" onclick="selectProcess('1', '3')">こうわ</button>
+                </div>
+                <div class="answerBox correctBox">
+                    <p class="correctResult">正解！</p>
+                    <p class="answerSentence">正解は「たかなわ」です！</p>
+                </div>
+                <div class="answerBox wrongBox">
+                    <p class="wrongResult">不正解！</p>
+                    <p class="answerSentence">正解は「たかなわ」です！</p>
+                </div>
+            </div>
+        </ol>
+    </main>
 </body>
 
 </html>
