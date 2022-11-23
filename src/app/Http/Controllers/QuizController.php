@@ -11,8 +11,6 @@ class QuizController extends Controller
     public function index($id)
     {
         $contents = Content::all();
-        $questions = Question::all();
-        $choices = Choice::all();
-        return view('quiz.index', compact('id', 'contents', 'questions', 'choices'));
+        return view('quiz.index', compact('id', 'contents'));
     }
 }
