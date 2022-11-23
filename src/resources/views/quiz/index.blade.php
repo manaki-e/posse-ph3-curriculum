@@ -13,26 +13,30 @@
 
 <body>
     <main>
-      {{ $contents }}
+        {{-- {{ $item->toJson(JSON_UNESCAPED_UNICODE) }}<br> --}}
         <ol id="wrapper">
             <div class="main">
-                <li class="question">1. この地名はなんて読む？</li>
-                <div class="picture">
-                    <img src="../img/takanawa.png" alt="たかなわ">
-                </div>
-                <div class="optionBox">
-                    <button class="option" id="1-1" onclick="selectProcess('1', '1')">たかなわ</button>
-                    <button class="option" id="1-2" onclick="selectProcess('1', '2')">たかわ</button>
-                    <button class="option" id="1-3" onclick="selectProcess('1', '3')">こうわ</button>
-                </div>
-                <div class="answerBox correctBox">
-                    <p class="correctResult">正解！</p>
-                    <p class="answerSentence">正解は「たかなわ」です！</p>
-                </div>
-                <div class="answerBox wrongBox">
-                    <p class="wrongResult">不正解！</p>
-                    <p class="answerSentence">正解は「たかなわ」です！</p>
-                </div>
+                <h1>{{ $contents[$id - 1]->content }}</h1>
+                @foreach ($contents[$id - 1]->questions as $i => $question)
+                    <li class="question">{{ $i + 1 }}. この地名はなんて読む？</li>
+                    <div class="picture">
+                        <img src="../img/{{ $question->question_image }}.png" alt={{ $question->question }}>
+                    </div>
+                    <div class="optionBox">
+                        @foreach ($question->choices as $j => $choice)
+                            <button class="option" id="{{ $i + 1 }}-{{ $j + 1 }}-{{ $choice->valid }}"
+                                onclick="selectProcess({{ $i + 1 }}, {{ $j + 1 }}, {{ $choice->valid }})">{{ $choice->choice }}</button>
+                        @endforeach
+                    </div>
+                    <div class="answerBox correctBox">
+                        <p class="correctResult">正解！</p>
+                        <p class="answerSentence">正解は「たかなわ」です！</p>
+                    </div>
+                    <div class="answerBox wrongBox">
+                        <p class="wrongResult">不正解！</p>
+                        <p class="answerSentence">正解は「たかなわ」です！</p>
+                    </div>
+                @endforeach
             </div>
         </ol>
     </main>

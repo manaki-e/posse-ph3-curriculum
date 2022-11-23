@@ -9,6 +9,18 @@ class Question extends Model
 {
     public function getData()
     {
-        return $this->id . ': ' . $this->title;
+        $questions_array =
+            [
+                'id' => $this->id,
+                'content_id' => $this->content_id,
+                'question' => $this->question,
+                'question_image' => $this->question_image
+            ];
+        return $questions_array;
+    }
+
+    public function choices()
+    {
+        return $this->hasMany('App\Models\Choice');
     }
 }

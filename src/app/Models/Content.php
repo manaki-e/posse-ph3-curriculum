@@ -9,6 +9,16 @@ class Content extends Model
 {
     public function getData()
     {
-        return ['id' => $this->id, 'content' => $this->content];
+        $contents_array =
+            [
+                'id' => $this->id,
+                'content' => $this->content
+            ];
+        return $contents_array;
+    }
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
     }
 }

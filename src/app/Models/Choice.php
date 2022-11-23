@@ -9,6 +9,13 @@ class Choice extends Model
 {
     public function getData()
     {
-        return $this->id . ': ' . $this->title;
+        $choices_array =
+            [
+                'id' => $this->id,
+                'question_id' => $this->question_id,
+                'choice' => $this->choice,
+                'valid' => $this->valid,
+            ];
+        return $choices_array;
     }
 }
