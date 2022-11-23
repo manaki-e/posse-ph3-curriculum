@@ -17,25 +17,27 @@
         <h1>{{ $contents[$id - 1]->content }}</h1>
         <ol class="main">
             @foreach ($contents[$id - 1]->questions as $i => $question)
-                <li class="question">{{ $i + 1 }}. この地名はなんて読む？
+                <li class="questions">
+                    <h2 class="question">{{ $i + 1 }}. この地名はなんて読む？</h2>
                     <div class="picture">
                         <img src="../img/{{ $question->question_image }}.png" alt={{ $question->question }}>
                     </div>
                     <div class="optionBox">
                         @foreach ($question->choices as $j => $choice)
-                            <button class="option" id="{{ $i + 1 }}-{{ $j + 1 }}-{{ $choice->valid }}"
+                            <button class="option" id="{{ $i + 1 }}-{{ $j + 1 }}"
+                                data-answer="{{ $choice->valid }}"
                                 onclick="selectProcess({{ $i + 1 }}, {{ $j + 1 }}, {{ $choice->valid }})">
                                 {{ $choice->choice }}
                             </button>
                         @endforeach
                     </div>
-                    <div class="answerBox correctBox">
-                        <p class="correctResult">正解！</p>
-                        <p class="answerSentence">正解は「たかなわ」です！</p>
-                    </div>
-                    <div class="answerBox wrongBox">
-                        <p class="wrongResult">不正解！</p>
-                        <p class="answerSentence">正解は「たかなわ」です！</p>
+                    <div class="answerBox displayNone">
+                        <p class="resultText"></p>
+                        <p class="answerSentence">
+                            正解は「
+                            <span class="answer"></span>
+                            」です！
+                        </p>
                     </div>
                 </li>
             @endforeach

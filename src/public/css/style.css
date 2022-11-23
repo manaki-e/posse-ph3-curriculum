@@ -99,14 +99,10 @@ img {
     color: azure;
 }
 
-.correctBox {
-    display: none;
-}
-
-.wrongBox {
-    display: none;
-}
-
 .clickedOptionBox {
     pointer-events: none;
+}
+
+.displayNone {
+    display: none;
 }
