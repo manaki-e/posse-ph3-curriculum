@@ -10,7 +10,7 @@ class QuizController extends Controller
 {
     public function index($id)
     {
-        $contents = Content::all();
+        $contents = Content::with('questions.choices')->get();
         return view('quiz.index', compact('id', 'contents'));
     }
 }
