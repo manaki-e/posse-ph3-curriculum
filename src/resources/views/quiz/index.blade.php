@@ -14,9 +14,9 @@
 <body>
     <main>
         {{-- {{ $item->toJson(JSON_UNESCAPED_UNICODE) }}<br> --}}
-        <h1>{{ $contents[$id - 1]->content }}</h1>
+        <h1>{{ $contents[0]->content }}</h1>
         <ol class="main">
-            @foreach ($contents[$id - 1]->questions as $i => $question)
+            @foreach ($contents[0]->questions as $i => $question)
                 <li class="questions">
                     <h2 class="question">{{ $i + 1 }}. この地名はなんて読む？</h2>
                     <div class="picture">
