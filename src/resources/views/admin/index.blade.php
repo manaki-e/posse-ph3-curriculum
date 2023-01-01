@@ -26,9 +26,9 @@
     @endforeach
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 overflow-hidden shadow-sm sm:rounded-lg flex justify-center items-center">
+        <div class="p-6 overflow-hidden sm:rounded-lg flex justify-center items-center">
             <button class="border border-solid border-purple-600 shadow-sm py-3 px-8 rounded-md bg-purple-600 text-white">
-                <a href="admin/question">新規作成</a>
+                <a href="{{ route('admin.create') }}">{{ __('新規作成') }}</a>
             </button>
         </div>
     </div>

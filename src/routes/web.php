@@ -30,6 +30,10 @@ Route::get('/admin', [QuestionController::class, 'index'])->middleware(['auth', 
 
 Route::get('/admin/detail', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.detail');
 
+Route::get('/admin/create', [QuestionController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.create');
+
+Route::post('/admin/store', [QuestionController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
