@@ -10,10 +10,15 @@ class QuestionController extends Controller
 {
     public function index()
     {
-        $questions = Content::with('questions.choices')->get();
+        $contents = Content::with('questions.choices')->get();
 
-        // dd($questions);
+        return view('admin.index', compact('contents'));
+    }
 
-        return view('admin.index', compact('questions'));
+    public function detail()
+    {
+        $contents = Content::with('questions.choices')->get();
+
+        return view('admin.detail', compact('contents'));
     }
 }

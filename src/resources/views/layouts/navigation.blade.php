@@ -12,13 +12,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('/')" :active="request()->routeIs('')">
-                        {{ __('ユーザー画面') }}
+                    <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                        {{ __('トップページ') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                        {{ __('管理画面') }}
+                    <x-nav-link :href="route('admin.detail')" :active="request()->routeIs('admin.detail')">
+                        {{ __('詳細ページ') }}
                     </x-nav-link>
                 </div>
             </div>
