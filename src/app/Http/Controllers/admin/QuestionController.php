@@ -10,23 +10,23 @@ use App\Models\Choice;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $contents = Content::with('questions.choices')->get();
+        $contents = Content::where('id', $id)->with('questions.choices')->get();
 
-        return view('admin.index', compact('contents'));
+        return view('admin.question.index', compact('id', 'contents'));
     }
 
     public function detail($id)
     {
         $question = Question::where('id', $id)->with('choices')->get();
 
-        return view('admin.detail', compact('id', 'question'));
+        return view('admin.question.detail', compact('id', 'question'));
     }
 
     public function create()
     {
-        return view('admin.create');
+        return view('admin.question.create');
     }
 
     public function store(Request $request)
@@ -66,6 +66,6 @@ class QuestionController extends Controller
 
 
         //一覧表示画面にリダイレクト
-        return redirect()->route('admin');
+        return redirect()->route('admin.question');
     }
 }

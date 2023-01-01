@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\admin\QuestionController;
+use App\Http\Controllers\admin\IssueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +27,17 @@ Route::get('/', function () {
 
 Route::get('/quiz/{id?}', [QuizController::class, 'index']);
 
-Route::get('/admin', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin', [IssueController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
 
-Route::get('/admin/detail/{id?}', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.detail');
+Route::get('/admin/create', [IssueController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.create');
 
-Route::get('/admin/create', [QuestionController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.create');
+Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.question');
 
-Route::post('/admin/store', [QuestionController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
+Route::get('/admin/question/detail/{id?}', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.question.detail');
+
+Route::get('/admin/question/create', [QuestionController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.question.create');
+
+Route::post('/admin/question/store', [QuestionController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.question.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

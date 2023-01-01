@@ -13,12 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                        {{ __('設問リスト') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.create')" :active="request()->routeIs('admin.create')">
-                        {{ __('新規作成') }}
+                        {{ __('問題リスト') }}
                     </x-nav-link>
                 </div>
             </div>
