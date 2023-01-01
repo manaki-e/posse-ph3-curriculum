@@ -31,7 +31,7 @@
         <div class="p-6 overflow-hidden sm:rounded-lg flex justify-center items-center">
             <button
                 class="border border-solid border-purple-600 shadow-sm py-3 px-8 rounded-md bg-purple-600 text-white">
-                <a href="{{ route('admin.question.create') }}">{{ __('新規作成') }}</a>
+                <a class="block w-full h-full py-3 px-8" href="{{ route('admin.question.create') }}">{{ __('新規作成') }}</a>
             </button>
         </div>
     </div>

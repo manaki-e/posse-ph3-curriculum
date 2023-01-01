@@ -31,6 +31,8 @@ Route::get('/admin', [IssueController::class, 'index'])->middleware(['auth', 've
 
 Route::get('/admin/create', [IssueController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.create');
 
+Route::post('/admin/store', [IssueController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
+
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.question');
 
 Route::get('/admin/question/detail/{id?}', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.question.detail');

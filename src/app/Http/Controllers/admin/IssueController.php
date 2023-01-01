@@ -27,7 +27,7 @@ class IssueController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -38,7 +38,13 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = new Content;
+        $content->content = $request["content"];
+        $content->timestamps = false;
+        $content->save();
+
+        //一覧表示画面にリダイレクト
+        return redirect()->route('admin');
     }
 
     /**
