@@ -17,11 +17,11 @@ class QuestionController extends Controller
         return view('admin.index', compact('contents'));
     }
 
-    public function detail()
+    public function detail($id)
     {
-        $contents = Content::with('questions.choices')->get();
+        $question = Question::where('id', $id)->with('choices')->get();
 
-        return view('admin.detail', compact('contents'));
+        return view('admin.detail', compact('id', 'question'));
     }
 
     public function create()

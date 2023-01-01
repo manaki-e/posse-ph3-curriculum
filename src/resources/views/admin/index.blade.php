@@ -14,10 +14,10 @@
                     </div>
                     <ul class="flex gap-4">
                         <li class="border border-solid border-purple-600 shadow-sm py-3 px-8 rounded-md bg-purple-600 text-white">
-                            <a href="admin/question">編集</a>
+                            <a href="{{route('admin.detail',['id'=>$loop->iteration])}}">{{ __('編集') }}</a>
                         </li>
                         <li class="border border-solid border-purple-600 shadow-sm py-3 px-8 rounded-md bg-purple-600 text-white">
-                            <a href="admin/question">追加</a>
+                            <a href="admin/question">{{ __('削除') }}</a>
                         </li>
                     </ul>
                 </div>

@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('/') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -17,8 +17,8 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('admin.detail')" :active="request()->routeIs('admin.detail')">
-                        {{ __('詳細ページ') }}
+                    <x-nav-link :href="route('admin.create')" :active="request()->routeIs('admin.create')">
+                        {{ __('新規作成ページ') }}
                     </x-nav-link>
                 </div>
             </div>

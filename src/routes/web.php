@@ -28,7 +28,7 @@ Route::get('/quiz/{id?}', [QuizController::class, 'index']);
 
 Route::get('/admin', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
 
-Route::get('/admin/detail', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.detail');
+Route::get('/admin/detail/{id?}', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.detail');
 
 Route::get('/admin/create', [QuestionController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.create');
 
