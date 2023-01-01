@@ -16,8 +16,6 @@ class QuizController extends Controller
         //     $query->where('id', '===', 1);
         // }])->get();
 
-        dd($contents);
-
         return view('quiz.index', compact('id', 'contents'));
     }
 }

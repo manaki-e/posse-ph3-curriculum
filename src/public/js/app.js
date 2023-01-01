@@ -6,15 +6,15 @@ function selectProcess(optionNumber, selectNumber, valid) {
     document
         .getElementsByClassName("optionBox")
         [optionNumber - 1].querySelector('[data-answer="1"]')
-        .classList.add("true"); //正解の選択肢を青くする
+        .classList.add("bg-blue-500", "text-white"); //正解の選択肢を青くする
     // 二度クリックさせない
     document
         .getElementsByClassName("optionBox")
-        [optionNumber - 1].classList.add("clickedOptionBox");
+        [optionNumber - 1].classList.add("pointer-events-none");
     // 結果boxの表示
     document
         .getElementsByClassName("answerBox")
-        [optionNumber - 1].classList.remove("displayNone");
+        [optionNumber - 1].classList.remove("hidden");
     // 答えを挿入
     document.getElementsByClassName("answer")[optionNumber - 1].innerHTML =
         document
@@ -31,13 +31,13 @@ function selectProcess(optionNumber, selectNumber, valid) {
         // 正解文にクラス名を付与
         document.getElementsByClassName("resultText")[
             optionNumber - 1
-        ].classList.add("correctResult")
+        ].classList.add("before:border-b-blue-600")
     } else {
         // クリックされた選択肢と正解が不一致
         // クリックした選択肢を赤くする
         document
         .getElementById(optionNumber + "-" + selectNumber)
-        .classList.add("false");
+        .classList.add("bg-red-500", "text-white");
         // 不正解文表示
         document.getElementsByClassName("resultText")[
             optionNumber - 1
@@ -45,6 +45,6 @@ function selectProcess(optionNumber, selectNumber, valid) {
         // 不正解文にクラス名を付与
         document.getElementsByClassName("resultText")[
             optionNumber - 1
-        ].classList.add("wrongResult")
+        ].classList.add("before:border-b-red-600")
     }
 }

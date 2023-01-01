@@ -16,11 +16,12 @@
 </head>
 
 <body>
-    <main class="mt-16 flex justify-center items-center">
+    <main class="mt-16 flex flex-col justify-center items-center">
         @yield('content')
     </main>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../../js/app.js"></script>
 </body>
 
 </html>
