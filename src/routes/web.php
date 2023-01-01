@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\ChoiceController;
+use App\Http\Controllers\admin\QuestionController;
+use App\Http\Controllers\admin\ChoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('quiz_list');
-});
+})->name('/');
 
 Route::get('/quiz/{id?}', [QuizController::class, 'index']);
+
+Route::get('/admin', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin');
+
+Route::get('/admin/choice', [ChoiceController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.choice');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
