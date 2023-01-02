@@ -19,6 +19,9 @@
                                 href="{{ route('admin.question', ['id' => $content->id]) }}">{{ __('設問リスト') }}</a>
                         </li>
                         <li class="border border-solid border-purple-600 shadow-sm rounded-md bg-purple-600 text-white">
+                            <a class="block w-full h-full py-3 px-8" href="{{ route('admin.edit', ['id'=>$content->id]) }}">{{ __('編集') }}</a>
+                        </li>
+                        <li class="border border-solid border-purple-600 shadow-sm rounded-md bg-purple-600 text-white">
                             <a class="block w-full h-full py-3 px-8" href="">{{ __('削除') }}</a>
                         </li>
                     </ul>

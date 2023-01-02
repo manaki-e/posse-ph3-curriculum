@@ -66,7 +66,9 @@ class IssueController extends Controller
      */
     public function edit($id)
     {
-        //
+        $content = Content::find($id);
+
+        return view('admin.edit', compact('content'));
     }
 
     /**
@@ -78,7 +80,16 @@ class IssueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $content = Content::find($id);
+
+        $content->content = $request["content"];
+        $content->timestamps = false;
+
+        //DBに保存
+        $content->save();
+
+        //処理が終わったらmember/indexにリダイレクト
+        return redirect('admin');
     }
 
     /**

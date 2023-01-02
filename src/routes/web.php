@@ -33,6 +33,10 @@ Route::get('/admin/create', [IssueController::class, 'create'])->middleware(['au
 
 Route::post('/admin/store', [IssueController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.store');
 
+Route::get('/admin/edit/{id?}', [IssueController::class, 'edit'])->middleware(['auth', 'verified'])->name('admin.edit');
+
+Route::post('/admin/update/{id?}', [IssueController::class, 'update'])->middleware(['auth', 'verified'])->name('admin.update');
+
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.question');
 
 Route::get('/admin/question/detail/{id?}', [QuestionController::class, 'detail'])->middleware(['auth', 'verified'])->name('admin.question.detail');
