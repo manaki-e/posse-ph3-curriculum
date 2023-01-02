@@ -85,10 +85,8 @@ class IssueController extends Controller
         $content->content = $request["content"];
         $content->timestamps = false;
 
-        //DBに保存
         $content->save();
 
-        //処理が終わったらmember/indexにリダイレクト
         return redirect('admin');
     }
 
