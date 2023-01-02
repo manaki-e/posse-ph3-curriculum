@@ -44,7 +44,7 @@ class QuestionController extends Controller
         $question->content_id = 1;
         $question->question = $request["question"];
         $question->question_image = $request["question_en"];
-        $question->timestamps = false; 
+        $question->timestamps = false;
         $question->save();
 
         $question_id_last = Question::latest('id')->first()->id;
@@ -56,21 +56,21 @@ class QuestionController extends Controller
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_1"];
         $choice->valid = $request["answer"] == "answer_1" ? 1 : 0;
-        $choice->timestamps = false; 
+        $choice->timestamps = false;
         $choice->save();
 
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_2"];
         $choice->valid = $request["answer"] == "answer_2" ? 1 : 0;
-        $choice->timestamps = false; 
+        $choice->timestamps = false;
         $choice->save();
 
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_3"];
         $choice->valid = $request["answer"] == "answer_3" ? 1 : 0;
-        $choice->timestamps = false; 
+        $choice->timestamps = false;
         $choice->save();
 
 
@@ -99,7 +99,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::where('id', $id)->with('choices')->get();
+
+        return view('admin.question.edit', compact('id', 'question'));
     }
 
     /**
@@ -111,7 +113,20 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::find($id);
+        $question->question = $request["question"];
+        $question->question_image = $request["question_en"];
+        $question->timestamps = false;
+        $question->save();
+
+        for ($i = 1; $i < 4; $i++) {
+            $choice = Choice::find(($id - 1) * 3 + $i);
+            $choice->choice = $request["choice_{$i}"];
+            $choice->timestamps = false;
+            $choice->save();
+        }
+
+        return redirect('admin.question');
     }
 
     /**
@@ -122,12 +137,12 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $choice=Choice::where('question_id',$id);
+        $choice = Choice::where('question_id', $id);
         $choice->delete();
 
-        $question=Question::find($id);
+        $question = Question::find($id);
         $question->delete();
 
-    return redirect('admin.question');
+        return redirect('admin.question');
     }
 }
