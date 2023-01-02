@@ -105,8 +105,8 @@
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 overflow-hidden sm:rounded-lg flex justify-center items-center">
-            <button class="border border-solid border-purple-600 shadow-sm py-3 px-8 rounded-md bg-purple-600 text-white">
-                <a href="">{{ __('この問題を修正する') }}</a>
+            <button class="border border-solid border-purple-600 shadow-sm rounded-md bg-purple-600 text-white">
+                <a class="block w-full h-full py-3 px-8" href="{{ route('admin.question.edit', ['id'=>$question[0]->id]) }}">{{ __('この問題を修正する') }}</a>
             </button>
         </div>
     </div>
