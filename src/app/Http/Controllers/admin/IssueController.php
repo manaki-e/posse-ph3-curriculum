@@ -15,7 +15,7 @@ class IssueController extends Controller
      */
     public function index()
     {
-        $contents = Content::get();
+        $contents = Content::orderBy('pos')->get();
 
         return view('admin.index', compact('contents'));
     }
@@ -38,8 +38,11 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
+        $last_id = Content::latest('id')->first()->id;
+
         $content = new Content;
         $content->content = $request["content"];
+        $content->pos = $last_id + 1;
         $content->timestamps = false;
         $content->save();
 
@@ -98,10 +101,42 @@ class IssueController extends Controller
      */
     public function destroy($id)
     {
-        $content=Content::find($id);
+        $content = Content::find($id);
 
         $content->delete();
 
-    return redirect('admin');
+        return redirect('admin');
+    }
+
+    public function up($pos)
+    {
+        $content_this = Content::where('pos', $pos)->get()[0];
+
+        $content_this->pos = $pos - 1;
+        $content_this->timestamps = false;
+        $content_this->save();
+
+        $content_other = Content::where('pos', $pos - 1)->get()[0];
+        $content_other->pos = $pos;
+        $content_other->timestamps = false;
+        $content_other->save();
+
+        return redirect('admin');
+    }
+
+    public function down($pos)
+    {
+        $content_this = Content::where('pos', $pos)->get()[0];
+
+        $content_this->pos = $pos + 1;
+        $content_this->timestamps = false;
+        $content_this->save();
+
+        $content_other = Content::where('pos', $pos + 1)->get()[0];
+        $content_other->pos = $pos;
+        $content_other->timestamps = false;
+        $content_other->save();
+
+        return redirect('admin');
     }
 }

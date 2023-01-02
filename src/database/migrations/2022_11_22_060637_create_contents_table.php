@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('content');
+            $table->biginteger('pos');
         });
     }
 

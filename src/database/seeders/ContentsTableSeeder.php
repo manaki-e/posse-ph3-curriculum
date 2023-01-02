@@ -15,8 +15,8 @@ class ContentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('contents')->insert([
-            ['content' => '東京の難読地名クイズ'],
-            ['content' => '広島の難読地名クイズ']
+            ['content' => '東京の難読地名クイズ', 'pos'=>1],
+            ['content' => '広島の難読地名クイズ', 'pos'=>2]
         ]);
     }
 }
