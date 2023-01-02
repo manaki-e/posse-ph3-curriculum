@@ -100,6 +100,10 @@ class IssueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $content=Content::find($id);
+
+        $content->delete();
+
+    return redirect('admin');
     }
 }
