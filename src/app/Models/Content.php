@@ -35,6 +35,6 @@ class Content extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Models\Question');
+        return $this->hasMany('App\Models\Question')->orderBy('pos');
     }
 }

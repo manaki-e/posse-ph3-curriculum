@@ -57,6 +57,10 @@ Route::post('/admin/question/update/{id?}', [QuestionController::class, 'update'
 
 Route::post('/admin/question/destroy/{id?}', [QuestionController::class, 'destroy'])->middleware(['auth', 'verified'])->name('admin.question.destroy');
 
+Route::post('/admin/question/up/{id?}/{pos?}', [QuestionController::class, 'up'])->middleware(['auth', 'verified'])->name('admin.question.up');
+
+Route::post('/admin/question/down/{id?}/{pos?}', [QuestionController::class, 'down'])->middleware(['auth', 'verified'])->name('admin.question.down');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

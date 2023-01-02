@@ -126,7 +126,7 @@ class QuestionController extends Controller
             $choice->save();
         }
 
-        return redirect('admin.question');
+        return redirect()->route('admin.question', ['id' => $id]);
     }
 
     /**
@@ -143,6 +143,38 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $question->delete();
 
-        return redirect('admin.question');
+        return redirect()->route('admin.question', ['id' => $id]);
+    }
+
+    public function up($id, $pos)
+    {
+        $question_this = Question::where('pos', $pos)->get()[0];
+        $question_this->pos = $pos - 1;
+        $question_this->timestamps = false;
+        
+        $question_other = Question::where('pos', $pos - 1)->get()[0];
+        $question_other->pos = $pos;
+        $question_other->timestamps = false;
+
+        $question_this->save();
+        $question_other->save();
+
+        return redirect()->route('admin.question', ['id' => $id]);
+    }
+
+    public function down($id, $pos)
+    {
+        $question_this = Question::where('pos', $pos)->get()[0];
+        $question_this->pos = $pos + 1;
+        $question_this->timestamps = false;
+        
+        $question_other = Question::where('pos', $pos + 1)->get()[0];
+        $question_other->pos = $pos;
+        $question_other->timestamps = false;
+
+        $question_this->save();
+        $question_other->save();
+
+        return redirect()->route('admin.question', ['id' => $id]);
     }
 }

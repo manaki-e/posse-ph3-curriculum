@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('content_id')->constrained('contents');
             $table->string('question');
             $table->string('question_image');
+            $table->biginteger('pos');
         });
     }
 

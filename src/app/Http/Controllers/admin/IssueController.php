@@ -111,14 +111,14 @@ class IssueController extends Controller
     public function up($pos)
     {
         $content_this = Content::where('pos', $pos)->get()[0];
-
         $content_this->pos = $pos - 1;
         $content_this->timestamps = false;
-        $content_this->save();
-
+        
         $content_other = Content::where('pos', $pos - 1)->get()[0];
         $content_other->pos = $pos;
         $content_other->timestamps = false;
+
+        $content_this->save();
         $content_other->save();
 
         return redirect('admin');
@@ -127,14 +127,14 @@ class IssueController extends Controller
     public function down($pos)
     {
         $content_this = Content::where('pos', $pos)->get()[0];
-
         $content_this->pos = $pos + 1;
         $content_this->timestamps = false;
-        $content_this->save();
-
+        
         $content_other = Content::where('pos', $pos + 1)->get()[0];
         $content_other->pos = $pos;
         $content_other->timestamps = false;
+
+        $content_this->save();
         $content_other->save();
 
         return redirect('admin');

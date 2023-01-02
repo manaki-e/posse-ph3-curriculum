@@ -19,16 +19,19 @@ class QuestionsTableSeeder extends Seeder
                 'content_id' => 1,
                 'question' => '高輪',
                 'question_image' => 'takanawa',
+                'pos' => '1',
             ],
             [
                 'content_id' => 1,
                 'question' => '亀戸',
                 'question_image' => 'kameido',
+                'pos' => '2',
             ],
             [
                 'content_id' => 2,
                 'question' => '向灘',
                 'question_image' => 'mukainada',
+                'pos' => '1',
             ]
         ]);
     }
