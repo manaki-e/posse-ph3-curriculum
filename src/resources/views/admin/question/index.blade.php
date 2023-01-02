@@ -19,7 +19,10 @@
                                 href="{{ route('admin.question.detail', ['id' => $question->id]) }}">{{ __('詳細') }}</a>
                         </li>
                         <li class="border border-solid border-purple-600 shadow-sm rounded-md bg-purple-600 text-white">
-                            <a class="block w-full h-full py-3 px-8" href="">{{ __('削除') }}</a>
+                            <form method="POST" action="{{ route('admin.question.destroy', ['id'=>$question->id]) }}">
+                                @csrf
+                                <button class="block w-full h-full py-3 px-8" type="submit">{{ __('削除') }}</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

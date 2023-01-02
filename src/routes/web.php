@@ -37,7 +37,7 @@ Route::get('/admin/edit/{id?}', [IssueController::class, 'edit'])->middleware(['
 
 Route::post('/admin/update/{id?}', [IssueController::class, 'update'])->middleware(['auth', 'verified'])->name('admin.update');
 
-Route::post('/admin/destroy/{id}', [IssueController::class, 'destroy'])->middleware(['auth', 'verified'])->name('admin.destroy');
+Route::post('/admin/destroy/{id?}', [IssueController::class, 'destroy'])->middleware(['auth', 'verified'])->name('admin.destroy');
 
 Route::get('/admin/question/{id?}', [QuestionController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.question');
 
@@ -46,6 +46,8 @@ Route::get('/admin/question/detail/{id?}', [QuestionController::class, 'detail']
 Route::get('/admin/question/create', [QuestionController::class, 'create'])->middleware(['auth', 'verified'])->name('admin.question.create');
 
 Route::post('/admin/question/store', [QuestionController::class, 'store'])->middleware(['auth', 'verified'])->name('admin.question.store');
+
+Route::post('/admin/question/destroy/{id?}', [QuestionController::class, 'destroy'])->middleware(['auth', 'verified'])->name('admin.question.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
