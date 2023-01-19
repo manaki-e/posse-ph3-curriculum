@@ -40,7 +40,11 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question_pos_last = Question::where('content_id', $request["issue_number"])->latest('pos')->first()->pos;
+        try {
+            $question_pos_last = Question::where('content_id', $request["issue_number"])->latest('pos')->first()->pos;
+        } catch (\Exception $ex) {
+            $question_pos_last = 0;
+        }
 
         $question = new Question;
         $question->content_id = $request["issue_number"];
@@ -52,7 +56,6 @@ class QuestionController extends Controller
 
         $question_id_last = Question::latest('id')->first()->id;
 
-        
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_1"];
@@ -138,13 +141,14 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
+        $content_number = Question::find($id)->content_id;
         $choice = Choice::where('question_id', $id);
         $choice->delete();
 
         $question = Question::find($id);
         $question->delete();
 
-        return redirect()->route('admin.question', ['id' => $id]);
+        return redirect()->route('admin.question', ['id' => $content_number]);
     }
 
     public function up($id, $pos)
@@ -152,8 +156,8 @@ class QuestionController extends Controller
         $question_this = Question::where('pos', $pos)->get()[0];
         $question_this->pos = $pos - 1;
         $question_this->timestamps = false;
-        
-        $question_other = Question::where('pos', $pos - 1)->get()[0];
+
+        $question_other = Question::where('content_id', $id)->where('pos', '<=', $pos - 1)->latest('pos')->first();
         $question_other->pos = $pos;
         $question_other->timestamps = false;
 
@@ -168,8 +172,8 @@ class QuestionController extends Controller
         $question_this = Question::where('pos', $pos)->get()[0];
         $question_this->pos = $pos + 1;
         $question_this->timestamps = false;
-        
-        $question_other = Question::where('pos', $pos + 1)->get()[0];
+
+        $question_other = Question::where('content_id', $id)->where('pos', '>=', $pos + 1)->oldest('pos')->first();
         $question_other->pos = $pos;
         $question_other->timestamps = false;
 
