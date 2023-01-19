@@ -38,7 +38,7 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        $last_id = Content::latest('id')->first()->id;
+        $last_id = Content::latest('pos')->first()->pos;
 
         $content = new Content;
         $content->content = $request["content"];
@@ -114,7 +114,7 @@ class IssueController extends Controller
         $content_this->pos = $pos - 1;
         $content_this->timestamps = false;
         
-        $content_other = Content::where('pos', $pos - 1)->get()[0];
+        $content_other = Content::where('pos', '<=', $pos - 1)->latest('pos')->first();
         $content_other->pos = $pos;
         $content_other->timestamps = false;
 
@@ -130,7 +130,7 @@ class IssueController extends Controller
         $content_this->pos = $pos + 1;
         $content_this->timestamps = false;
         
-        $content_other = Content::where('pos', $pos + 1)->get()[0];
+        $content_other = Content::where('pos', '>=', $pos + 1)->oldest('pos')->first();
         $content_other->pos = $pos;
         $content_other->timestamps = false;
 
