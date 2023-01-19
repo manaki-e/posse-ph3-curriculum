@@ -67,9 +67,6 @@
                                 <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     valid
                                 </th>
-                                <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    Up/Down
-                                </th>
                             </tr>
                         </thead class="border-b">
                         <tbody>
@@ -85,13 +82,6 @@
                                         @elseif ($choice->valid == 0)
                                         {{ __('不正解') }}
                                         @endif
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        <button type="button"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded mr-1 js-up-button"
-                                            data-id="{{ $choice->id }}">↑</button>
-                                        <button type="button"
-                                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded js-down-button">↓</button>
                                     </td>
                                 </tr>
                             @endforeach
