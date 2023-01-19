@@ -18,7 +18,7 @@
                             <form action="{{ route('admin.up', ['pos' => $content->pos]) }}" method="POST">
                                 @csrf
                                 @if ($loop->first)
-                                <button class="block w-full h-full py-2 px-2 rounded mr-1">↓</button>
+                                <button class="block w-full h-full py-2 px-2 rounded mr-1">↑</button>
                                 @else
                                 <button type="submit"
                                     class="block w-full h-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mr-1"
