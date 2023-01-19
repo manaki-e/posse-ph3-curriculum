@@ -27,9 +27,9 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('admin.question.create');
+        return view('admin.question.create', compact('id'));
     }
 
     /**
@@ -40,42 +40,43 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $question_pos_last = Question::where('content_id', $request["issue_number"])->latest('pos')->first()->pos;
+
         $question = new Question;
-        $question->content_id = 1;
+        $question->content_id = $request["issue_number"];
         $question->question = $request["question"];
         $question->question_image = $request["question_en"];
         $question->timestamps = false;
+        $question->pos = $question_pos_last + 1;
         $question->save();
 
         $question_id_last = Question::latest('id')->first()->id;
 
-        // 後程修正
-        $request["answer"] = "answer_2";
-
+        
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_1"];
-        $choice->valid = $request["answer"] == "answer_1" ? 1 : 0;
+        $choice->valid = $request["answer"] == "1" ? 1 : 0;
         $choice->timestamps = false;
         $choice->save();
 
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_2"];
-        $choice->valid = $request["answer"] == "answer_2" ? 1 : 0;
+        $choice->valid = $request["answer"] == "2" ? 1 : 0;
         $choice->timestamps = false;
         $choice->save();
 
         $choice = new Choice;
         $choice->question_id = $question_id_last;
         $choice->choice = $request["choice_3"];
-        $choice->valid = $request["answer"] == "answer_3" ? 1 : 0;
+        $choice->valid = $request["answer"] == "3" ? 1 : 0;
         $choice->timestamps = false;
         $choice->save();
 
 
         //一覧表示画面にリダイレクト
-        return redirect()->route('admin.question');
+        return redirect()->route('admin.question', ['id' => $request["issue_number"]]);
     }
 
     /**
