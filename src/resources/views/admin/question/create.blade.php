@@ -8,7 +8,7 @@
 
     <div class="flex justify-center items-center font-sans text-gray-900 antialiased">
         <div class="w-full sm:max-w-md my-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <form action="{{ route('admin.question.store') }}" method="POST">
+            <form action="{{ route('admin.question.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- id-->
@@ -61,7 +61,7 @@
 
                 <!-- answer -->
                 <x-input-label :value="__('答えの選択肢')" />
-                <div class="flex">
+                <div class="mb-6 flex">
                     <div class="w-full">
                         <x-radio-input id="answer_1" class="" type="radio" name="answer" value="1"
                         required autofocus />
@@ -77,6 +77,14 @@
                         required autofocus />
                         <x-input-label for="answer_3" :value="__('選択肢-3')" class="mt-1 px-4 py-3 cursor-pointer border border-solid border-gray-300 -mr-1 text-black bg-white block text-center peer-checked:bg-blue-400 peer-checked:text-white"/>
                     </div>
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
+
+                <!-- picture-->
+                <div class="mb-6">
+                    <x-input-label for="picture" :value="__('設問の画像')" />
+                    <x-text-input id="picture" class="block mt-1 w-full" type="file" name="picture"
+                        :value="old('picture')" required autofocus />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 

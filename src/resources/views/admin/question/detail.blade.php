@@ -15,30 +15,26 @@
                         <thead class="border-b bg-gray-50">
                             <tr>
                                 <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    id
-                                </th>
-                                <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    content_id
-                                </th>
-                                <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Question
                                 </th>
                                 <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     question_en
                                 </th>
+                                <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
+                                    question_image
+                                </th>
                             </tr>
                         </thead class="border-b">
                         <tbody>
                             <tr class="bg-white border-b">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ $question[0]->id }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ $question[0]->content_id }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-2xl font-semibold">
                                     {{ $question[0]->question }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-2xl font-semibold">
                                     {{ $question[0]->question_image }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-center items-center">
+                                    <img class="block h-32" src="{{ asset('/storage/img/' . $question[0]->question_image . '.' . $question[0]->question_extension) }}">
                                 </td>
                             </tr>
                         </tbody>
@@ -59,9 +55,6 @@
                         <thead class="border-b bg-gray-50">
                             <tr>
                                 <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
-                                    id
-                                </th>
-                                <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
                                     Choice
                                 </th>
                                 <th scope="col" width="10" class="text-sm font-medium text-gray-900 px-6 py-4">
@@ -72,8 +65,6 @@
                         <tbody>
                             @foreach ($question[0]->choices as $choice)
                                 <tr class="bg-white border-b">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $choice->id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $choice->choice }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">

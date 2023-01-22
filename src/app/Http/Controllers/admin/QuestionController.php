@@ -46,10 +46,14 @@ class QuestionController extends Controller
             $question_pos_last = 0;
         }
 
+        $extension = $request->file('picture')->getClientOriginalExtension();
+        $request->file('picture')->storeAs('public/img', $request["question_en"] . '.' . $extension);
+
         $question = new Question;
         $question->content_id = $request["issue_number"];
         $question->question = $request["question"];
         $question->question_image = $request["question_en"];
+        $question->question_extension = $extension;
         $question->timestamps = false;
         $question->pos = $question_pos_last + 1;
         $question->save();
