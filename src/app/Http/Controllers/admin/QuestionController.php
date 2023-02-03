@@ -157,7 +157,7 @@ class QuestionController extends Controller
 
     public function up($id, $pos)
     {
-        $question_this = Question::where('pos', $pos)->get()[0];
+        $question_this = Question::where('content_id', $id)->where('pos', $pos)->get()[0];
         $question_this->pos = $pos - 1;
         $question_this->timestamps = false;
 
@@ -173,7 +173,7 @@ class QuestionController extends Controller
 
     public function down($id, $pos)
     {
-        $question_this = Question::where('pos', $pos)->get()[0];
+        $question_this = Question::where('content_id', $id)->where('pos', $pos)->get()[0];
         $question_this->pos = $pos + 1;
         $question_this->timestamps = false;
 

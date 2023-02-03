@@ -7,7 +7,7 @@
 
     <div class="flex justify-center items-center font-sans text-gray-900 antialiased">
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <form action="{{ route('admin.question.update', ['id' => $question[0]->id]) }}" method="POST">
+            <form action="{{ route('admin.question.update', ['id' => $question[0]->id - 1]) }}" method="POST">
                 @csrf
 
                 <!-- Question-->
